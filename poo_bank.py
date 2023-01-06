@@ -103,5 +103,5 @@ def main():
             user.__showAmount__()
         time.sleep(3)
         option = menu()
-    print("Closing your session.")
+    print("Closing your session.") 
 main()
