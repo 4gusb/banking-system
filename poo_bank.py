@@ -1,5 +1,54 @@
+#simple banking system
+
 import time
 import os
+
+class User:
+    def __init__(self):
+        User.name = validName()
+        User.surname = validSurname(User.name)
+        User.ID = validID()
+        User.__pass = validPass()
+
+class Bank(User):
+    def __init__(self):
+        super().__init__()
+        Bank.__amount = 0
+    
+    def __deposit__(self):
+        while True:
+            try:
+                amount = int(input("\nHow much money do you want to deposite?: "))
+                if amount <= 0:
+                    print("Error input. Please, choose a valid amount.")
+                else:
+                    Bank.__amount += amount
+                    print("Deposite successfully made.")
+                    break
+            except ValueError:
+                print("Error input. Please, use only numbers.")
+    
+    def __withdraw__(self):
+        while True:
+            try:
+                amount = int(input("\nHow much money do you want to withdraw from your account?: "))
+                if amount <= 0:
+                    print("Error input. Please, choose a valid amount.")                   
+                elif amount > Bank.__amount:
+                    print("Insufficient funds.")
+                    break
+                else:
+                    Bank.__amount -= amount
+                    print("Withdraw successfully made.")
+                    break
+            except ValueError:
+                print("Value error.")       
+               
+
+    def __showAmount__(self):
+        print("\n------------CURRENT AMOUNT------------")
+        print("\n$ {}".format(Bank.__amount))
+
 
 def validName():
     var = input("Input your name: ").capitalize()
@@ -29,50 +78,6 @@ def validPass():
         var = input("\nInput your password (longer than 7 chars, include numbers): ")
     return var
 
-class User:
-    def __init__(self):
-        User.name = validName()
-        User.surname = validSurname(User.name)
-        User.ID = validID()
-        User.__pass = validPass()
-
-class Bank(User):
-    def __init__(self):
-        super().__init__()
-        Bank.__amount = 0
-    
-    def __deposit__(self):
-        try:
-            amount = int(input("\nHow much money do you want to deposite?: "))
-            if amount < 0:
-                print("Error input. Please, use only numbers.")
-                Bank.__deposit__()
-            Bank.__amount += amount
-            print("Deposite successfully made.")
-        except ValueError:
-            print("Value error.")
-            Bank.__deposit__()
-    
-    def __withdraw__(self):
-        try:
-            amount = int(input("\nHow much money do you want to withdraw from your account?: "))
-            if amount < 0:
-                print("Error input. Please, choose a valid amount.")
-                Bank.__withdraw__()
-            elif amount > Bank.__amount:
-                print("Insufficient funds.")
-            else:
-                Bank.__amount -= amount
-                print("Withdraw successfully made.")
-        except ValueError:
-            print("Value error.")       
-            Bank.__withdraw__()
-
-    def __showAmount__(self):
-        print("\n------------CURRENT AMOUNT------------")
-        print("\n$ {}".format(Bank.__amount))
-
-
 def menu():
     while True:
         print("\n---------LIST OF OPTIONS---------")
@@ -80,7 +85,7 @@ def menu():
         try:
             action = int(input("\nWhat do you want to do today?: "))
             if action not in (1, 2, 3, 4):
-                print("\nError input.")
+                print("\nError input. Please, choose a valid option.")
                 time.sleep(3)
                 os.system('cls')
             else:
@@ -102,6 +107,7 @@ def main():
         elif option == 3:
             user.__showAmount__()
         time.sleep(3)
+        os.system('cls')
         option = menu()
-    print("Closing your session.") 
+    print("Closing your session.")
 main()
