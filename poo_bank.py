@@ -16,39 +16,35 @@ class Bank(User):
         Bank.__amount = 0
     
     def __deposit__(self):
-        while True:
-            try:
-                amount = int(input("\nHow much money do you want to deposite?: "))
-                if amount <= 0:
-                    print("Error input. Please, choose a valid amount.")
-                else:
-                    Bank.__amount += amount
-                    print("Deposite successfully made.")
-                    break
-            except ValueError:
-                print("Error input. Please, use only numbers.")
-    
+            print("\n------------PROCESS OF DEPOSIT------------")
+            amount = validateInput()
+            Bank.__amount += amount
+            print("Deposite successfully made.")
+        
     def __withdraw__(self):
-        while True:
-            try:
-                amount = int(input("\nHow much money do you want to withdraw from your account?: "))
-                if amount <= 0:
-                    print("Error input. Please, choose a valid amount.")                   
-                elif amount > Bank.__amount:
-                    print("Insufficient funds.")
-                    break
-                else:
-                    Bank.__amount -= amount
-                    print("Withdraw successfully made.")
-                    break
-            except ValueError:
-                print("Value error.")       
-               
+            print("\n------------PROCESS OF WITHDRAW------------")
+            amount = validateInput()
+            if amount > Bank.__amount:
+                print("Insufficient funds.")
+            else:
+                Bank.__amount -= amount
+                print("Withdraw successfully made.")                  
 
     def __showAmount__(self):
         print("\n------------CURRENT AMOUNT------------")
         print("\n$ {}".format(Bank.__amount))
 
+
+def validateInput():
+    while True:
+        try: 
+            amount = int(input("\nPlease, indicate amount of money: "))
+            if amount <= 0: 
+                print("Error input. Please, choose a valid amount.")
+            else:
+                return amount
+        except ValueError:
+            print("Error input. Please, use only numbers.")
 
 def validName():
     var = input("Input your name: ").capitalize()
