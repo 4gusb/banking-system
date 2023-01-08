@@ -35,7 +35,7 @@ class Bank(User):
         print("\n$ {}".format(Bank.__amount))
 
 
-def validateInput():
+def validMoney():
     while True:
         try: 
             amount = int(input("\nPlease, indicate amount of money: "))
