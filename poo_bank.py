@@ -16,13 +16,13 @@ class Bank(User):
         Bank.__amount = 0
     
     def __deposit__(self):
-            print("\n------------PROCESS OF DEPOSIT------------")
+            print("\n------------DEPOSIT PROCESS------------")
             amount = validateInput()
             Bank.__amount += amount
             print("Deposite successfully made.")
         
     def __withdraw__(self):
-            print("\n------------PROCESS OF WITHDRAW------------")
+            print("\n------------WITHDRAWAL PROCESS------------")
             amount = validateInput()
             if amount > Bank.__amount:
                 print("Insufficient funds.")
