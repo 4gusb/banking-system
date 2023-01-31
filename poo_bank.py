@@ -88,7 +88,6 @@ def menu():
                 return action
         except ValueError:
             print("Error input. Please, choose a valid option.")
-            menu()
                 
 def main():
     print("\n-------------Welcome-------------")
